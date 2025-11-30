@@ -1,5 +1,5 @@
 /*****************************************************************************
-* | File      	:   LCD_1in14.c
+* | File      	:   LCD_1in2.c
 * | Author      :   Waveshare team
 * | Function    :   Hardware underlying interface
 * | Info        :
@@ -286,11 +286,11 @@ void LCD_2IN_DisplayWindows(UWORD Xstart, UWORD Ystart, UWORD Xend, UWORD Yend, 
     UDOUBLE Addr = 0;
 
     UWORD j;
-    LCD_2IN_SetWindows(Xstart, Ystart, Xend , Yend);
+    LCD_2IN_SetWindows(Xstart, Ystart, Xend, Yend);
     DEV_Digital_Write(EPD_DC_PIN, 1);
     DEV_Digital_Write(EPD_CS_PIN, 0);
-    for (j = Ystart; j < Yend - 1; j++) {
-        Addr = Xstart + j * LCD_2IN.WIDTH ;
+    for (j = 0; j < (Ystart - Yend + 1); j++) {
+        Addr = j * (Xend - Xstart);
         DEV_SPI_Write_nByte((uint8_t *)&Image[Addr], (Xend-Xstart)*2);
     }
     DEV_Digital_Write(EPD_CS_PIN, 1);
