@@ -45,7 +45,7 @@ class OLED_1inch3(framebuf.FrameBuffer):
         self.cs(1)
 
     def init_display(self):
-        """Initialize dispaly"""  
+        """Initialize display"""  
         self.rst(1)
         time.sleep(0.001)
         self.rst(0)
